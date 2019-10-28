@@ -1,0 +1,32 @@
+﻿<Window x:Class="TaskManagerApp.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManagerApp"
+        xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Login" Height="200" Width="400" WindowStyle="None">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <MaterialDesign:PackIcon Kind="Rabbit" Width="100" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="MediumPurple"/>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Margin="20 50 20 0">
+                <Label Content="Login" Width="50"/>
+                <TextBox x:Name="LoginInput" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Hasło" Width="50"/>
+                <TextBox x:Name="PasswordInput" Width="150"/>
+            </StackPanel>
+            <Button x:Name="LoginButton" Width="150" Height="35" Content="Zaloguj" Click="LoginButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
