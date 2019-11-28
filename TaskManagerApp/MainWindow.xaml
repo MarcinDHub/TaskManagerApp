@@ -13,70 +13,44 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="None" HorizontalAlignment="Right" VerticalAlignment="Bottom" WindowStartupLocation="Manual" MouseDown="Window_MouseDown">
-    <StackPanel>
-        <Button Style="{StaticResource MaterialDesignFlatButton}" Width="20" Height="20" HorizontalAlignment="Right" Padding="0">
-            <materialDesign:PackIcon x:Name="CloseIcon" Kind="Close" Width="20" Height="20" />
+        Title="MainWindow" Height="800" Width="330" MinHeight="800" MinWidth="330" WindowStyle="None" HorizontalAlignment="Right" VerticalAlignment="Bottom" WindowStartupLocation="Manual" MouseDown="Window_MouseDown">
+    <DockPanel LastChildFill="False">
+        <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignFlatButton}" Width="20" Height="20" HorizontalAlignment="Right" Padding="0" Margin="0">
+            <materialDesign:PackIcon x:Name="CloseIcon" Kind="Close" Width="20" Height="20" Padding="0" Margin="0"/>
         </Button>
-        
-        <materialDesign:PackIcon Kind="Rabbit" Width="100" Height="100"/>
-        <materialDesign:TimePicker Width="100"/>
-        <materialDesign:RatingBar x:Name="rating" Width="200" Height="50" />
-        <Button Width="150" Height="30" Content="Check!" Click="Button_Click"/>
-        <ProgressBar Value="76" Width="500" Height="20" Margin="0 20 0 0 " Foreground="CadetBlue"/>
+
+        <materialDesign:PackIcon DockPanel.Dock="Top" Kind="Rabbit" Width="100" Height="100" HorizontalAlignment="Center" Padding="0"/>
+        <Grid DockPanel.Dock="Top" x:Name="menuGrid" Height="60" Margin="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="MenuButtonTasks" Style="{StaticResource MaterialDesignRaisedLightButton}" materialDesign:ButtonAssist.CornerRadius="0" Padding="0" Margin="0" Click="MenuButtonTasks_Click">Zadania</Button>
+            <Button Grid.Column="1" x:Name="MenuButtonReports" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="0" Click="MenuButtonReports_Click">Raporty</Button>
+            <Button Grid.Column="2" x:Name="MenuButtonImplementations" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="0" Click="MenuButtonImplementations_Click">Szkolenia</Button>
+        </Grid>
 
 
-        <ListBox>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="60 0 0 0" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Car" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Label Content="UT Rybacka - kalibracja" />
-                    <Button Width="20" Height="20" Padding="0" Margin="20 0 0 0">
-                        <materialDesign:PackIcon Kind="Check" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Button>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <DockPanel Margin="60 0 0 0" HorizontalAlignment="Center" Width="500" LastChildFill="False">
-                    <materialDesign:PackIcon Kind="Car" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" DockPanel.Dock="Left"/>
-                    <Label Content="UT Rybacka - kalibracja123123123123134342423432432432424324324"  MaxWidth="300" DockPanel.Dock="Left"/>
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                        <Button Width="20" Height="20" Padding="0" Margin="20 0 0 0" Background="Orange">
-                            <materialDesign:PackIcon Kind="Play" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Button>
-                        <Button Width="20" Height="20" Padding="0" Margin="20 0 0 0" Style="{StaticResource MaterialDesignRaisedAccentButton}">
-                            <materialDesign:PackIcon Kind="Check" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Button>
-                        <materialDesign:PackIcon Kind="Hand" >
-                            <materialDesign:PackIcon.ToolTip>
-                                <ToolTip>
-                                    <Button Content="test" />
-                                </ToolTip>
-                            </materialDesign:PackIcon.ToolTip>
+        <ListBox DockPanel.Dock="Top" x:Name="ListBox" >
 
-                        </materialDesign:PackIcon>
-                    </StackPanel>
-                </DockPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="60 0 0 0" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Car" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Label Content="UT Rybacka - kalibracja" />
-                    <Button Width="20" Height="20" Padding="0" Margin="20 0 0 0">
-                        <materialDesign:PackIcon Kind="Check" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Button>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="60 0 0 0" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Car" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Label Content="UT Rybacka - kalibracja" />
-                    <Button Width="20" Height="20" Padding="0" Margin="20 0 0 0">
-                        <materialDesign:PackIcon Kind="Check" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Button>
-                </StackPanel>
-            </ListBoxItem>
         </ListBox>
-    </StackPanel>
+        <materialDesign:ColorZone DockPanel.Dock="Bottom" Mode="PrimaryMid" Height="30">
+            <DockPanel LastChildFill="False">
+                <Button Padding="5">
+                    <materialDesign:PackIcon   Kind="Settings" VerticalAlignment="Center" />
+                </Button>
+                <Button Padding="5">
+                    <materialDesign:PackIcon   Kind="Search" VerticalAlignment="Center"/>
+                </Button>
+                <Button DockPanel.Dock="Right"> 
+                    <materialDesign:PackIcon   Kind="Plus" VerticalAlignment="Center"/>
+                </Button>
+                
+            </DockPanel>
+            
+        </materialDesign:ColorZone>
+        
+    </DockPanel>
     
 </Window>

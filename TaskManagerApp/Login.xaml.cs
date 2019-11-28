@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,11 @@ namespace TaskManagerApp
         {
             bool isValid = true;
 
+            var macAddr = (from nic in NetworkInterface.GetAllNetworkInterfaces()
+                            where nic.OperationalStatus == OperationalStatus.Up
+                            select nic.GetPhysicalAddress().ToString()
+                            ).FirstOrDefault();
+            Console.WriteLine(macAddr);
             if (isValid)
             {
                 Hide();

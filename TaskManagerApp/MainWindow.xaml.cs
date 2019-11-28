@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
-using System.Windows;
 using Tray;
 
 namespace TaskManagerApp
@@ -29,6 +28,30 @@ namespace TaskManagerApp
             InitializeComponent();
             Closing += OnClosingWindow;
             trayClass = new TrayClass(this);
+
+            TaskHeaderUC taskH = new TaskHeaderUC();
+            taskH.TaskClient = "Haber";
+            taskH.TaskTypeImage = "RadioAm";
+            taskH.TaskTitle = "instalka";
+            ListBox.Items.Add(taskH);
+
+            TaskHeaderUC taskH1 = new TaskHeaderUC();
+            taskH1.TaskClient = "Rybacka";
+            taskH1.TaskTypeImage = "Refresh";
+            taskH1.TaskTitle = "kalibracja";
+            ListBox.Items.Add(taskH1);
+
+            TaskHeaderUC taskH2 = new TaskHeaderUC();
+            taskH2.TaskClient = "Port Gdański Eksploatacja";
+            taskH2.TaskTypeImage = "Read";
+            taskH2.TaskTitle = "ciągle są problemy ze stacją; przepływomierz liczy dziwne impulsy; komunikator migocze";
+            ListBox.Items.Add(taskH2);
+
+            TaskHeaderUC taskH3 = new TaskHeaderUC();
+            taskH3.TaskClient = "MTM";
+            taskH3.TaskTypeImage = "Recycle";
+            taskH3.TaskTitle = "szkolenie";
+            ListBox.Items.Add(taskH3);
         }
 
         private void OnClosingWindow(object sender, CancelEventArgs e)
@@ -54,5 +77,46 @@ namespace TaskManagerApp
         }
 
 
+        private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (PlayPauseButtonIcon.Kind == MaterialDesignThemes.Wpf.PackIconKind.Pause)
+            //{
+            //    PlayPauseButtonIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+            //}
+            //else
+            //{
+            //    PlayPauseButtonIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
+            //}
+        }
+
+        private void MenuButtonTasks_Click(object sender, RoutedEventArgs e)
+        {
+            Style style = this.FindResource("MaterialDesignRaisedLightButton") as Style;
+            MenuClearSelection();
+            MenuButtonTasks.Style = style;
+        }
+
+        private void MenuButtonReports_Click(object sender, RoutedEventArgs e)
+        {
+            Style style = this.FindResource("MaterialDesignRaisedLightButton") as Style;
+            MenuClearSelection();
+            MenuButtonReports.Style = style;
+        }
+
+        private void MenuButtonImplementations_Click(object sender, RoutedEventArgs e)
+        {
+            Style style = this.FindResource("MaterialDesignRaisedLightButton") as Style;
+            MenuClearSelection();
+            MenuButtonImplementations.Style = style;
+        }
+
+
+        private void MenuClearSelection()
+        {
+            Style style = this.FindResource("MaterialDesignRaisedButton") as Style;
+            MenuButtonTasks.Style = style;
+            MenuButtonReports.Style = style;
+            MenuButtonImplementations.Style = style;
+        }
     }
 }
