@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static TaskManagerApp.Config;
 
 namespace TaskManagerApp
 {
@@ -23,6 +25,17 @@ namespace TaskManagerApp
         public Login()
         {
             InitializeComponent();
+
+            try
+            {
+                c.Open();
+                MessageBox.Show("Połączono");
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -36,6 +49,15 @@ namespace TaskManagerApp
             Console.WriteLine(macAddr);
             if (isValid)
             {
+
+                LoadUserList();
+
+
+                foreach (Employee item in employeesList)
+                {
+                    Console.WriteLine(item.FirstName + " " + item.LastName);
+                }
+
                 Hide();
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
@@ -47,6 +69,19 @@ namespace TaskManagerApp
 
 
         }
+
+        private void LoadUserList()
+        {
+            DataTable employeesTable = new DataTable();
+            employeesTable = Query.EmployeesList();
+
+            foreach (DataRow dr in employeesTable.Rows)
+            {
+                employeesList.Add(new Employee { ID = Convert.ToInt32(dr[0]), FirstName = dr[1].ToString(), LastName = dr[2].ToString() });
+            }
+        }
+
+
 
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using Tray;
+using static TaskManagerApp.Config;
 
 namespace TaskManagerApp
 {
@@ -26,6 +27,13 @@ namespace TaskManagerApp
         public MainWindow()
         {
             InitializeComponent();
+
+
+
+            AddTask a1 = new AddTask();
+            a1.Show();
+
+
             Closing += OnClosingWindow;
             trayClass = new TrayClass(this);
 
@@ -44,7 +52,7 @@ namespace TaskManagerApp
             TaskHeaderUC taskH2 = new TaskHeaderUC();
             taskH2.TaskClient = "Port Gdański Eksploatacja";
             taskH2.TaskTypeImage = "Read";
-            taskH2.TaskTitle = "ciągle są problemy ze stacją; przepływomierz liczy dziwne impulsy; komunikator migocze";
+            taskH2.TaskTitle = "ciągle są problemy ze stacją; przepływomierz liczy dziwne impulsy; komunikator migocze hiio ojhoij oj  jojjoijo joijo j j oj oj oi  hbgv yo moi";
             ListBox.Items.Add(taskH2);
 
             TaskHeaderUC taskH3 = new TaskHeaderUC();
