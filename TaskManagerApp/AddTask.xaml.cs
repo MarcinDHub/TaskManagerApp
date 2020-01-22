@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static TaskManagerApp.Query;
 
 namespace TaskManagerApp
 {
@@ -22,7 +23,22 @@ namespace TaskManagerApp
         public AddTask()
         {
             InitializeComponent();
-            UsersCombobox.ItemsSource = Config.employeesList;
+            AddTaskUser.ItemsSource = Config.employeesList;
+            AddTaskClient.ItemsSource = Config.clientsList;
+        }
+
+        private void AddTaskCreate_Click(object sender, RoutedEventArgs e)
+        {
+            string q = null;
+            
+
+            InsertIntoDatabase(q);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

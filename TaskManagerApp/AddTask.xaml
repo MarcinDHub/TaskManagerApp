@@ -6,46 +6,61 @@
         xmlns:local="clr-namespace:TaskManagerApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddTask" Height="700" Width="400" WindowStyle="None">
-    <DockPanel LastChildFill="False">
+        Title="AddTask" Height="700" Width="400" WindowStyle="None" MouseDown="Window_MouseDown">
+    <DockPanel LastChildFill="False" >
 
 
         <materialDesign:ColorZone DockPanel.Dock="Top" Margin="0 20 0 0" Mode="PrimaryMid" Height="40" materialDesign:ShadowAssist.ShadowDepth="Depth3" >
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold">Nowe zadanie</TextBlock>
         </materialDesign:ColorZone>
-        
-        <ComboBox x:Name="UsersCombobox" Margin="40 40 40 0" DockPanel.Dock="Top"  >
+
+        <ComboBox x:Name="AddTaskUser" Margin="40 40 40 0" DockPanel.Dock="Top"  >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon   Kind="Settings" VerticalAlignment="Center" />
                         <TextBlock Text="{Binding FirstName}" FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text=" " FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding LastName}" FontSize="14" FontWeight="Bold"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox x:Name="TaskCategoryCombobox" Margin="40 40 40 0" DockPanel.Dock="Top" Width="300" >
+        <ComboBox x:Name="AddTaskClient" Margin="40 40 40 0" DockPanel.Dock="Top" Width="300"  materialDesign:HintAssist.Hint="Search" TextSearch.TextPath="Name">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon   Kind="Settings" VerticalAlignment="Center" />
-                        <TextBlock Text="{Binding FirstName}" FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <TextBox DockPanel.Dock="Top" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="40 40 40 0"
+        <TextBox DockPanel.Dock="Top" x:Name="AddTaskTitle" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="40 40 40 0"
+                 VerticalAlignment="Top" Height="60" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                 materialDesign:HintAssist.Hint="Tytuł zgłoszenia"  />
+
+        <TextBox DockPanel.Dock="Top" x:Name="AddTaskContent" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="40 40 40 0"
                             VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
-                                materialDesign:HintAssist.Hint="Treść zgłoszenia"  />
+                                materialDesign:HintAssist.Hint="Treść maila"  />
 
-        <DatePicker DockPanel.Dock="Top" Margin="0 40 0 0" Width="200" materialDesign:HintAssist.Hint="Termin wykonania"  />
+        <DatePicker DockPanel.Dock="Top" x:Name="AddTaskDeadline" Margin="0 40 0 0" Width="200" materialDesign:HintAssist.Hint="Termin wykonania"  />
 
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0 40 0 0" HorizontalAlignment="Center">
+            <Label>Priorytet:</Label>
+            <materialDesign:RatingBar  Max="3"   Value="3" x:Name="BasicRatingBar"  />
+        </StackPanel>
 
+        <DockPanel DockPanel.Dock="Bottom" >
+            <Button DockPanel.Dock="Left" x:Name="AddTaskCancel" Margin="20 20 0 20" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Width="100">
+                ANULUJ
+            </Button>
+            <Button DockPanel.Dock="Right" x:Name="AddTaskCreate" Margin="0 20 20 20" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="100" Click="AddTaskCreate_Click">
+                UTWÓRZ
+            </Button>
+        </DockPanel>
 
-        <Button DockPanel.Dock="Bottom" Margin="20" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Width="100">
-            UTWÓRZ
-        </Button>
     </DockPanel>
 </Window>

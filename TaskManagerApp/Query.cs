@@ -36,9 +36,31 @@ namespace TaskManagerApp
 
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             adapter.Fill(data);
+            c.Close();
 
             return data;
         }
+
+
+        // Lista klientów
+        public static DataTable ClientsList()
+        {
+            SqlCommand command = new SqlCommand();
+            DataTable data = new DataTable();
+
+            command.Connection = c;
+            command.CommandText = "SELECT * FROM dbo.Clients ORDER BY name;";
+
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(data);
+            c.Close();
+
+            return data;
+        }
+
+
+
 
     }
 }

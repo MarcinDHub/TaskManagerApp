@@ -15,6 +15,7 @@ namespace TaskManagerApp
 
 
         public static List<Employee> employeesList = new List<Employee>();
+        public static List<Client> clientsList = new List<Client>();
 
 
 
@@ -23,6 +24,13 @@ namespace TaskManagerApp
             public int ID { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
+        }
+
+        public class Client
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public int Priority { get; set; }
         }
 
     }

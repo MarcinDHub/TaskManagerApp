@@ -51,11 +51,17 @@ namespace TaskManagerApp
             {
 
                 LoadUserList();
+                LoadClientList();
 
 
                 foreach (Employee item in employeesList)
                 {
                     Console.WriteLine(item.FirstName + " " + item.LastName);
+                }
+
+                foreach (Client item in clientsList)
+                {
+                    Console.WriteLine(item.Name + " " + item.Priority);
                 }
 
                 Hide();
@@ -81,6 +87,17 @@ namespace TaskManagerApp
             }
         }
 
+
+        private void LoadClientList()
+        {
+            DataTable clientsTable = new DataTable();
+            clientsTable = Query.ClientsList();
+
+            foreach (DataRow dr in clientsTable.Rows)
+            {
+                clientsList.Add(new Client { ID = Convert.ToInt32(dr[0]), Name = dr[1].ToString(), Priority = Convert.ToInt32(dr[2]) });
+            }
+        }
 
 
     }
