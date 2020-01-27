@@ -30,9 +30,6 @@ namespace TaskManagerApp
 
 
 
-            AddTask a1 = new AddTask();
-            a1.Show();
-
 
             Closing += OnClosingWindow;
             trayClass = new TrayClass(this);
@@ -125,6 +122,12 @@ namespace TaskManagerApp
             MenuButtonTasks.Style = style;
             MenuButtonReports.Style = style;
             MenuButtonImplementations.Style = style;
+        }
+
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddTask addTask = new AddTask();
+            addTask.Show();
         }
     }
 }

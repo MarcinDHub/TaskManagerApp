@@ -52,6 +52,7 @@ namespace TaskManagerApp
 
                 LoadUserList();
                 LoadClientList();
+                LoadCategoryList();
 
 
                 foreach (Employee item in employeesList)
@@ -96,6 +97,17 @@ namespace TaskManagerApp
             foreach (DataRow dr in clientsTable.Rows)
             {
                 clientsList.Add(new Client { ID = Convert.ToInt32(dr[0]), Name = dr[1].ToString(), Priority = Convert.ToInt32(dr[2]) });
+            }
+        }
+
+        private void LoadCategoryList()
+        {
+            DataTable categoriesTable = new DataTable();
+            categoriesTable = Query.CategoriesList();
+
+            foreach (DataRow dr in categoriesTable.Rows)
+            {
+                categoriesList.Add(new Category { ID = Convert.ToInt32(dr["CategoryID"]), Name = dr["Name"].ToString(), Icon = dr["Icon"].ToString() });
             }
         }
 

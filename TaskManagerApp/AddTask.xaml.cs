@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static TaskManagerApp.Query;
+using static TaskManagerApp.Config;
 
 namespace TaskManagerApp
 {
@@ -25,20 +26,30 @@ namespace TaskManagerApp
             InitializeComponent();
             AddTaskUser.ItemsSource = Config.employeesList;
             AddTaskClient.ItemsSource = Config.clientsList;
+            AddTaskCategory.ItemsSource = Config.categoriesList;
         }
 
         private void AddTaskCreate_Click(object sender, RoutedEventArgs e)
         {
+            Category x = (Category)AddTaskCategory.SelectedItem;
+
+
+            
             string q = null;
             
 
-            InsertIntoDatabase(q);
+            //InsertIntoDatabase(q);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void AddTaskCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

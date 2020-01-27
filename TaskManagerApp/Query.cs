@@ -59,7 +59,22 @@ namespace TaskManagerApp
             return data;
         }
 
+        // Lista kategorii
+        public static DataTable CategoriesList()
+        {
+            SqlCommand command = new SqlCommand();
+            DataTable data = new DataTable();
 
+            command.Connection = c;
+            command.CommandText = "SELECT * FROM dbo.Category ORDER BY name;";
+
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(data);
+            c.Close();
+
+            return data;
+        }
 
 
     }

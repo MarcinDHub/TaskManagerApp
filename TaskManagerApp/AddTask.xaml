@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TaskManagerApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddTask" Height="700" Width="400" WindowStyle="None" MouseDown="Window_MouseDown">
+        Title="AddTask" Height="700" Width="400" WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="NoResize">
     <DockPanel LastChildFill="False" >
 
 
@@ -14,7 +14,7 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold">Nowe zadanie</TextBlock>
         </materialDesign:ColorZone>
 
-        <ComboBox x:Name="AddTaskUser" Margin="40 40 40 0" DockPanel.Dock="Top"  >
+        <ComboBox x:Name="AddTaskUser" Margin="40 40 40 0" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Pracownik" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -27,12 +27,23 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox x:Name="AddTaskClient" Margin="40 40 40 0" DockPanel.Dock="Top" Width="300"  materialDesign:HintAssist.Hint="Search" TextSearch.TextPath="Name">
+        <ComboBox x:Name="AddTaskClient" Margin="40 40 40 0" DockPanel.Dock="Top"   materialDesign:HintAssist.Hint="Klient" TextSearch.TextPath="Name">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon   Kind="Settings" VerticalAlignment="Center" />
                         <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox x:Name="AddTaskCategory" Margin="40 40 40 0" DockPanel.Dock="Top"   materialDesign:HintAssist.Hint="Kategoria" TextSearch.TextPath="Name">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="{Binding Icon}" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold" Margin="10 0 0 0"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
@@ -54,7 +65,7 @@
         </StackPanel>
 
         <DockPanel DockPanel.Dock="Bottom" >
-            <Button DockPanel.Dock="Left" x:Name="AddTaskCancel" Margin="20 20 0 20" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Width="100">
+            <Button DockPanel.Dock="Left" x:Name="AddTaskCancel" Margin="20 20 0 20" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Width="100" Click="AddTaskCancel_Click">
                 ANULUJ
             </Button>
             <Button DockPanel.Dock="Right" x:Name="AddTaskCreate" Margin="0 20 20 20" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="100" Click="AddTaskCreate_Click">

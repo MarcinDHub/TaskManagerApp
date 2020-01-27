@@ -43,7 +43,7 @@
                 <Button Padding="5">
                     <materialDesign:PackIcon   Kind="Search" VerticalAlignment="Center"/>
                 </Button>
-                <Button DockPanel.Dock="Right"> 
+                <Button x:Name="AddTaskButton"  DockPanel.Dock="Right" Click="AddTaskButton_Click"> 
                     <materialDesign:PackIcon   Kind="Plus" VerticalAlignment="Center"/>
                 </Button>
                 
