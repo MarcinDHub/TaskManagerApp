@@ -31,14 +31,18 @@ namespace TaskManagerApp
 
         private void AddTaskCreate_Click(object sender, RoutedEventArgs e)
         {
-            Category x = (Category)AddTaskCategory.SelectedItem;
+            TaskClass newTask = new TaskClass
+            {
+                userID = ((Employee)AddTaskUser.SelectedItem).ID,
+                clientID = ((Client)AddTaskClient.SelectedItem).ID,
+                title = AddTaskTitle.Text,
+                subtitle = AddTaskContent.Text.Replace("'",""),
+                createdDate = DateTime.Now,
+                deadlineDate = AddTaskDeadline.SelectedDate.Value,
+                category = ((Category)AddTaskCategory.SelectedItem).ID,
+            };
 
-
-            
-            string q = null;
-            
-
-            //InsertIntoDatabase(q);
+            Query.Insert.Task(newTask);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

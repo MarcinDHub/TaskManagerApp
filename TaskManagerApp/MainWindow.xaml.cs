@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using Tray;
 using static TaskManagerApp.Config;
+using System.Data;
 
 namespace TaskManagerApp
 {
@@ -34,29 +35,40 @@ namespace TaskManagerApp
             Closing += OnClosingWindow;
             trayClass = new TrayClass(this);
 
-            TaskHeaderUC taskH = new TaskHeaderUC();
-            taskH.TaskClient = "Haber";
-            taskH.TaskTypeImage = "RadioAm";
-            taskH.TaskTitle = "instalka";
-            ListBox.Items.Add(taskH);
+            List<TaskClass> taskList = new List<TaskClass>();
+            DataTable dt = Query.TaskList();
 
-            TaskHeaderUC taskH1 = new TaskHeaderUC();
-            taskH1.TaskClient = "Rybacka";
-            taskH1.TaskTypeImage = "Refresh";
-            taskH1.TaskTitle = "kalibracja";
-            ListBox.Items.Add(taskH1);
+            foreach(DataRow row in dt.Rows)
+            {
+                taskList.Add(new TaskClass
+                {
+                    ID = Convert.ToInt32(row["ID"]),
+                    userID = Convert.ToInt32(row["UserID"]),
+                    clientID = Convert.ToInt32(row["ClientID"]),
+                    title = row["Title"].ToString(),
+                    subtitle = row["Subtitle"].ToString(),
+                    createdDate = (DateTime)row["CreatedDate"],
+                    deadlineDate = (DateTime)row["DeadlineDate"],
+                    category = Convert.ToInt32(row["Category"])
+                });
+            }
 
-            TaskHeaderUC taskH2 = new TaskHeaderUC();
-            taskH2.TaskClient = "Port Gdański Eksploatacja";
-            taskH2.TaskTypeImage = "Read";
-            taskH2.TaskTitle = "ciągle są problemy ze stacją; przepływomierz liczy dziwne impulsy; komunikator migocze hiio ojhoij oj  jojjoijo joijo j j oj oj oi  hbgv yo moi";
-            ListBox.Items.Add(taskH2);
+            foreach (TaskClass task in taskList)
+            {
+                TaskHeaderUC taskHeader = new TaskHeaderUC();
 
-            TaskHeaderUC taskH3 = new TaskHeaderUC();
-            taskH3.TaskClient = "MTM";
-            taskH3.TaskTypeImage = "Recycle";
-            taskH3.TaskTitle = "szkolenie";
-            ListBox.Items.Add(taskH3);
+                taskHeader.TaskClient = task.clientID;
+                taskHeader.TaskTypeImage = "RadioAm";
+                taskHeader.TaskTitle = task.title;
+                ListBox.Items.Add(taskHeader);
+            }
+            //TaskHeaderUC taskH = new TaskHeaderUC();
+            //taskH.TaskClient = "Haber";
+            //taskH.TaskTypeImage = "RadioAm";
+            //taskH.TaskTitle = "instalka";
+            //ListBox.Items.Add(taskH);
+
+
         }
 
         private void OnClosingWindow(object sender, CancelEventArgs e)
@@ -99,6 +111,7 @@ namespace TaskManagerApp
             Style style = this.FindResource("MaterialDesignRaisedLightButton") as Style;
             MenuClearSelection();
             MenuButtonTasks.Style = style;
+            selectedTab = "TASKS";
         }
 
         private void MenuButtonReports_Click(object sender, RoutedEventArgs e)
@@ -106,6 +119,7 @@ namespace TaskManagerApp
             Style style = this.FindResource("MaterialDesignRaisedLightButton") as Style;
             MenuClearSelection();
             MenuButtonReports.Style = style;
+            selectedTab = "REPORTS";
         }
 
         private void MenuButtonImplementations_Click(object sender, RoutedEventArgs e)
@@ -113,6 +127,7 @@ namespace TaskManagerApp
             Style style = this.FindResource("MaterialDesignRaisedLightButton") as Style;
             MenuClearSelection();
             MenuButtonImplementations.Style = style;
+            selectedTab = "IMPLEMENTATIONS";
         }
 
 

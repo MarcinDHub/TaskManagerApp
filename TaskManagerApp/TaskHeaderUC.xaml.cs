@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static TaskManagerApp.Config;
 
 namespace TaskManagerApp
 {
@@ -65,6 +66,11 @@ namespace TaskManagerApp
         public static readonly DependencyProperty TaskTypeImageProperty =
             DependencyProperty.Register("TaskTypeImage", typeof(object), typeof(TaskHeaderUC), new PropertyMetadata("QuestionMarkCircle"));
 
+        private void Finish_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Finish  " + this.TaskTitle);
+            
 
+        }
     }
 }

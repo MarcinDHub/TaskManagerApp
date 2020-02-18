@@ -76,6 +76,48 @@ namespace TaskManagerApp
             return data;
         }
 
+        // List zadań
+        public static DataTable TaskList()
+        {
+            SqlCommand command = new SqlCommand();
+            DataTable data = new DataTable();
+
+            command.Connection = c;
+            command.CommandText = "SELECT * FROM dbo.Tasks ;";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(data);
+            c.Close();
+            return data;
+        }
+
+
+
+
+
+        // WPISY DO BAZY DANYCH
+        public class Insert
+        {
+            public static void Task(TaskClass task)
+            {
+                SqlCommand command = new SqlCommand();
+                c.Open();
+                command.Connection = c;
+
+                string query = String.Format("INSERT INTO dbo.Tasks VALUES ({0}, {1}, '{2}', '{3}', '{4}', '{5}', {6});",
+                    task.userID,
+                    task.clientID,
+                    task.title,
+                    task.subtitle,
+                    task.createdDate.ToString("yyyy/MM/dd HH:mm"),
+                    task.deadlineDate.ToString("yyyy/MM/dd HH:mm"),
+                    task.category);
+
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+                c.Close();
+            }
+        }
 
     }
 }

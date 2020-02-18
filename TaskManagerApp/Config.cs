@@ -18,6 +18,7 @@ namespace TaskManagerApp
         public static List<Client> clientsList = new List<Client>();
         public static List<Category> categoriesList = new List<Category>();
 
+        public static string selectedTab = "ZADANIA";
 
 
         public class Employee
@@ -41,5 +42,17 @@ namespace TaskManagerApp
             public string Icon { get; set; }
         }
 
+        public class TaskClass
+        {
+            public int ID { get; set; }
+            public int userID { get; set; }
+            public int clientID { get; set; }
+            public string title { get; set; }
+            public string subtitle { get; set; }
+            public DateTime createdDate { get; set; }
+            public DateTime deadlineDate { get; set; }
+            public int Priority { get; set; }
+            public int category { get; set; }
+        }
     }
 }
